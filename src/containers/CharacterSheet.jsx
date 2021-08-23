@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Box from '../components/Box'
+import Box from '../components/ui/Box'
 
 import contentsConfig from '../components/content/index'
 
@@ -33,6 +33,7 @@ const CharacterSheet = (props) => {
         Component={config.Component}
         headerColor={getHeaderColorFromLocalStorage(config.id) ?? config.defaultHeaderColor}
         key={config.id} 
+        symbolValue={config.symbolValue}
         title={config.label}
       />
     )

@@ -1,5 +1,7 @@
 import styled from "styled-components"
 
+import Symbol from './Symbol'
+
 const This = styled.section`
   display: flex;
   flex-direction: column;
@@ -16,16 +18,22 @@ border-radius: 5px;
 `
 
 const Header = styled.div`
+  display: flex;
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
   color: ${props => props.headerColor}; // later, can add shade() to adjust these and maybe add a background filter
+
+  & > span {
+    margin-left: .6rem;
+  }
 `
 
 const Box = (props) => {
   const {
     Component,
     headerColor,
+    symbolValue,
     title,
   } = props;
 
@@ -34,7 +42,13 @@ const Box = (props) => {
       <Header
         headerColor={headerColor}
       >
-        {title}
+        <Symbol
+          value={symbolValue}
+        />
+
+        <span>
+          {title}
+        </span>
       </Header>
 
       <Body>
