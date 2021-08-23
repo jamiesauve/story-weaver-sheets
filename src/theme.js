@@ -1,6 +1,12 @@
+const sharedGlobals = {
+  fontFamily: `'Crimson Text', serif`,
+  fontSize: `1.2rem`,
+};
+
 const theme = {
   dark: {
     global: {
+      ...sharedGlobals,
       background: `#111118`,
       borderColor: `#777`,
       color: `#eee`,
@@ -14,6 +20,7 @@ const theme = {
   },
   light: {
     global: {
+      ...sharedGlobals,
       background: `#fffff8`,
       borderColor: `#888`,
       color: `#111`,

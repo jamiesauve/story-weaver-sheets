@@ -1,32 +1,43 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Box from '../components/Box'
+
+import contentsConfig from '../components/content/index'
+
 const Layout = styled.div `
   max-width: 1500px;
   width: 90%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-auto-rows: 500px; // might be able to have this set by content later
 
-  grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: 500px; // might be able to have this set by content later
+  grid-gap: 40px;
 
   margin: 40px;
-`
 
-const Box = styled.section`
-  background: ${props => props.theme.box.background};
-  border: 1px solid ${props => props.theme.global.borderColor};
-
+  @media screen and (min-width: 600px) {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
 `
+console.log({ contentsConfig })
+
+const getHeaderColorFromLocalStorage = () => null
 
 const CharacterSheet = (props) => {
-  let boxes = [];
+  let boxes = []
 
-  for (let i = 0; i < 15; i++) {
+  contentsConfig.forEach((config) => {
     boxes.push(
-      <Box key={i} />
+      <Box 
+        Component={config.Component}
+        headerColor={getHeaderColorFromLocalStorage(config.id) ?? config.defaultHeaderColor}
+        key={config.id} 
+        title={config.label}
+      />
     )
-  }
+  })
+
   return (
     <Layout>
       {boxes}

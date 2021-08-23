@@ -15,15 +15,19 @@ const Page = styled.div `
   flex-direction: column;
   align-items: center;
 
+  min-height: 100vh;
+
   background: ${props => props.theme.global.background};
+  
+  font-family: ${props => props.theme.global.fontFamily};
+  font-size: ${props => props.theme.global.fontSize};
+  color: ${props => props.theme.global.color};
 `
 
 const Header = styled.header`
   text-align: center;
   
-  font-family: 'Crimson Text', serif;
   font-size: ${props => props.theme.header.fontSize};
-  color: ${props => props.theme.global.color};
 `
 
 const ToggleThemeButton = styled.button `
