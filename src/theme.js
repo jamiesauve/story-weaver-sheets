@@ -9,13 +9,18 @@ const theme = {
       ...sharedGlobals,
       background: `#111118`,
       borderColor: `#777`,
-      color: `#eee`,
+      color: `#ddd`,
+      highlight: `#222228`,
     },
     box: {
-      background: `#222228`,
+      background: `#222233`,
     },
     header: {
       fontSize: `3rem`,
+    },
+    rollButton: {
+      imageUrl: `url("./assets/d10-dark-mode.svg")`,
+      imageUrlOnHover: `url("./assets/d10-on-hover.svg")`,
     },
   },
   light: {
@@ -24,12 +29,17 @@ const theme = {
       background: `#fffff8`,
       borderColor: `#888`,
       color: `#111`,
+      highlight: `#eeeee8`,
     },
     box: {
-      background: `#eeeee8`,
+      background: `#eeeedd`,
     },
     header: {
       fontSize: `3rem`,
+    },
+    rollButton: {
+      imageUrl: `url("./assets/d10-light-mode.svg")`,
+      imageUrlOnHover: `url("./assets/d10-on-hover.svg")`,
     },
   }
 };

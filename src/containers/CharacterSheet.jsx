@@ -20,7 +20,6 @@ const Layout = styled.div `
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 `
-console.log({ contentsConfig })
 
 const getHeaderColorFromLocalStorage = () => null
 

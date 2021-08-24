@@ -12,7 +12,6 @@ const ListItem = styled.div`
 `
 
 const ScrollableList = (props) => {
-  console.log('children', props.children)
   return (
     <This>
       {props.children.map((item, index) => (

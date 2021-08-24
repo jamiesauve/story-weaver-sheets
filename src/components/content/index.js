@@ -1,7 +1,7 @@
 import AbilityScores from './AbilityScores';
 import Skills from './Skills';
 
-export default [
+const config = [
   {
     id: 0,
     Component: AbilityScores,
@@ -17,3 +17,5 @@ export default [
     symbolValue: "u", // ship's wheel
   }
 ]
+
+export default config;
