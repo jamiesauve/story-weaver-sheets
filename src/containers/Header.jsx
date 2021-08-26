@@ -81,7 +81,7 @@ const Header = (props) => {
     <This className="Header">
       <TopRow>
         <Logo>
-          <LogoIcon src="./assets/logo.png" />
+          <LogoIcon src="./assets/logo192.png" />
 
           <LogoLabel>
             Storyweaver Sheets
