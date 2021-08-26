@@ -17,6 +17,10 @@ const SymbolText = styled.div`
 
 // symbols: https://www.cdnfonts.com/nexa-rust-extras.font
 // height adjustments (Varies by symbol):
+const noChange = [
+  "C", // shield
+]
+
 const downOne = [
   "u", //ship's wheel
 ];
@@ -39,7 +43,7 @@ const Symbol = (props) => {
   }
 
   return (
-    <This>
+    <This className="Symbol">
       <SymbolText
         verticalAdjustment={verticalAdjustment}
       >

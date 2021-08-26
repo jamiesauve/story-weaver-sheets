@@ -38,7 +38,7 @@ const Box = (props) => {
   } = props;
 
   return (
-    <This>
+    <This className="Box">
       <Header
         headerColor={headerColor}
       >

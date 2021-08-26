@@ -1,10 +1,18 @@
 import styled from "styled-components"
 
 const This = styled.div`
+
   display: flex;
   flex-direction: column;
-  
-  overflow: scroll;
+  justify-content: space-evenly;
+
+  ${props => props.fillContainerProportionately
+    ? `
+      height: 100%;
+      overflow: scroll;
+    `
+    : ``
+  }
 `
 
 const ListItem = styled.div`
@@ -13,7 +21,10 @@ const ListItem = styled.div`
 
 const ScrollableList = (props) => {
   return (
-    <This>
+    <This 
+      className="ScrollableList"
+      fillContainerProportionately={props.fillContainerProportionately}
+    >
       {props.children.map((item, index) => (
         <ListItem
           key={index}

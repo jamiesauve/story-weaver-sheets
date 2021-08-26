@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
+import { RecoilRoot } from 'recoil';
+
 import themeConfig from './theme';
 
 import CharacterSheet from './containers/CharacterSheet';
+
+import StateInitializer from './state/StateInitializer';
 
 const THEME_OPTIONS = {
   LIGHT: 'light',
@@ -49,21 +53,25 @@ function App() {
   }
 
   return (
-    <ThemeProvider theme={themeConfig[currentTheme]} >
-      <Page className="App">
-        <Header>
-          Storyweaver Sheets
-          
-          <ToggleThemeButton 
-            onClick={toggleTheme}
-          >
-            {currentTheme === THEME_OPTIONS.DARK ? `Use Light Mode` : `Use Dark Mode`} 
-          </ToggleThemeButton>
-        </Header>
+    <RecoilRoot>
+      <ThemeProvider theme={themeConfig[currentTheme]} >
+        <StateInitializer characterId={1} >
+        <Page className="App">
+              <Header>
+                Storyweaver Sheets
+                
+                <ToggleThemeButton 
+                  onClick={toggleTheme}
+                >
+                  {currentTheme === THEME_OPTIONS.DARK ? `Use Light Mode` : `Use Dark Mode`} 
+                </ToggleThemeButton>
+              </Header>
 
-        <CharacterSheet />
-      </Page>
-    </ThemeProvider>
+              <CharacterSheet />
+            </Page>
+        </StateInitializer>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }
 

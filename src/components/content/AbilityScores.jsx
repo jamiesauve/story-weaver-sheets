@@ -1,9 +1,15 @@
 import styled from 'styled-components'
+import { useRecoilValue } from 'recoil'
 
 import ScrollableList from '../ui/ScrollableList'
 
 import { abilityScores } from '../../constants/abilityScores';
 import RollableListItem from '../ui/RollableListItem';
+
+import { 
+  characterAbilityScoresAsArraySelector,
+  characterAbilityScoreModifiersAsArraySelector,
+ } from '../../state/atoms/characterAbilityScoresAtom'
 
 const This = styled.div`
   display: flex;
@@ -36,27 +42,34 @@ const AbilityScoreLabel = styled.div`
 `
 
 const AbilityScores = () => {
-  const listItems = abilityScores.map((abilityScore, index) => (
-    <Row
-      key={abilityScore.label}
-    >
-      <AbilityScoreBox>
-        <AbilityScoreValue>
-          {10}
-        </AbilityScoreValue>
+  const characterAbilityScores = useRecoilValue(characterAbilityScoresAsArraySelector);
+  const characterAbilityScoreModifiers = useRecoilValue(characterAbilityScoreModifiersAsArraySelector);
 
-        <AbilityScoreLabel>
-          {abilityScore.abbr}
-        </AbilityScoreLabel>
-      </AbilityScoreBox>
+  const listItems = abilityScores.map((abilityScore, index) => {
+    const bonus = characterAbilityScoreModifiers[index];
+    
+    return (
+      <Row
+        key={abilityScore.label}
+      >
+        <AbilityScoreBox>
+          <AbilityScoreValue>
+            {characterAbilityScores[index]}
+          </AbilityScoreValue>
 
-      <RollableListItem 
-        bonus={index - 3}
-        command="GO CRAZY"
-        label={abilityScore.label}
-        />
-      </Row>
-  ))
+          <AbilityScoreLabel>
+            {abilityScore.abbr.toUpperCase()}
+          </AbilityScoreLabel>
+        </AbilityScoreBox>
+
+        <RollableListItem 
+          bonus={bonus}
+          command={`d20${bonus < 0 ? bonus : `+${bonus}`}`}
+          label={abilityScore.label}
+          />
+        </Row>
+    )
+  })
 
   return (
     <This>

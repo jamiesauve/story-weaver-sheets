@@ -1,31 +1,31 @@
 export const abilityScores = [
   {
-    abbr: 'STR',
+    abbr: 'str',
     label: `Strength`,
     name: 'strength',
   },
   {
-    abbr: 'DEX',
+    abbr: 'dex',
     label: `Dexterity`,
     name: 'dexterity',
   },
   {
-    abbr: 'CON',
+    abbr: 'con',
     label: `Constitution`,
     name: 'constitution',
   },
   {
-    abbr: 'INT',
+    abbr: 'int',
     label: `Intelligence`,
     name: 'intelligence',
   },
   {
-    abbr: 'WIS',
+    abbr: 'wis',
     label: `Wisdom`,
     name: 'wisdom',
   },
   {
-    abbr: 'CHA',
+    abbr: 'cha',
     label: `Charisma`,
     name: 'charisma',
   },

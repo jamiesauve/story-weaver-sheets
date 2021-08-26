@@ -1,4 +1,5 @@
 import AbilityScores from './AbilityScores';
+import SavingThrows from './SavingThrows';
 import Skills from './Skills';
 
 const config = [
@@ -11,6 +12,13 @@ const config = [
   },
   {
     id: 1,
+    Component: SavingThrows,
+    defaultHeaderColor: `#575`,
+    label: "Saving Throws",
+    symbolValue: "C", // shield
+  },
+  {
+    id: 2,
     Component: Skills,
     defaultHeaderColor: `#559`,
     label: "Skills",
