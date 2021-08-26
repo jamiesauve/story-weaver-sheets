@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react'
 
 import axios from "axios"
 import { useRecoilState } from 'recoil'
-import { characterNameAtom } from './atoms/characterNameAtom'
 import { characterAbilityScoresAtom } from './atoms/characterAbilityScoresAtom'
+import { characterNameAtom } from './atoms/characterNameAtom'
 import { characterSavingThrowsAtom } from './atoms/characterSavingThrowsAtom'
+import { characterSkillsAtom } from './atoms/characterSkillsAtom'
 import { characterProficiencyBonusAtom } from './atoms/characterProficiencyBonusAtom'
 
 import { API_URL } from "../env";
@@ -22,6 +23,7 @@ const StateInitializer = (props) => {
   const [, setCharacterName] = useRecoilState(characterNameAtom)
   const [, setCharacterAbilityScores] = useRecoilState(characterAbilityScoresAtom)
   const [, setCharacterSavingThrows] = useRecoilState(characterSavingThrowsAtom)
+  const [, setCharacterSkills] = useRecoilState(characterSkillsAtom)
   const [, setCharacterProficiencyBonus] = useRecoilState(characterProficiencyBonusAtom)
 
   useEffect(() => {
@@ -36,8 +38,9 @@ const StateInitializer = (props) => {
     
       const character = parseCharacterFromRawData({ rawCharacterData });
     
-      setCharacterName(character.name);
       setCharacterAbilityScores(character.abilityScores);
+      setCharacterName(character.name);
+      setCharacterSkills(character.skills);
       setCharacterSavingThrows(character.savingThrows);
       setCharacterProficiencyBonus(character.proficiencyBonus);
     
@@ -50,6 +53,7 @@ const StateInitializer = (props) => {
     setCharacterAbilityScores,
     setCharacterName,
     setCharacterProficiencyBonus,
+    setCharacterSkills,
     setCharacterSavingThrows,
   ])
 
