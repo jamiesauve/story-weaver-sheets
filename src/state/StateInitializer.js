@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import axios from "axios"
 import { useRecoilState } from 'recoil'
+import { characterNameAtom } from './atoms/characterNameAtom'
 import { characterAbilityScoresAtom } from './atoms/characterAbilityScoresAtom'
 import { characterSavingThrowsAtom } from './atoms/characterSavingThrowsAtom'
 import { characterProficiencyBonusAtom } from './atoms/characterProficiencyBonusAtom'
@@ -18,6 +19,7 @@ const StateInitializer = (props) => {
 
   const [hasStateInitialized, setHasStateInitialized] = useState(false)
 
+  const [, setCharacterName] = useRecoilState(characterNameAtom)
   const [, setCharacterAbilityScores] = useRecoilState(characterAbilityScoresAtom)
   const [, setCharacterSavingThrows] = useRecoilState(characterSavingThrowsAtom)
   const [, setCharacterProficiencyBonus] = useRecoilState(characterProficiencyBonusAtom)
@@ -34,6 +36,7 @@ const StateInitializer = (props) => {
     
       const character = parseCharacterFromRawData({ rawCharacterData });
     
+      setCharacterName(character.name);
       setCharacterAbilityScores(character.abilityScores);
       setCharacterSavingThrows(character.savingThrows);
       setCharacterProficiencyBonus(character.proficiencyBonus);
@@ -45,6 +48,8 @@ const StateInitializer = (props) => {
   }, [
     characterId,
     setCharacterAbilityScores,
+    setCharacterName,
+    setCharacterProficiencyBonus,
     setCharacterSavingThrows,
   ])
 

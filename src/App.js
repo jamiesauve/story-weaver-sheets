@@ -6,13 +6,11 @@ import { RecoilRoot } from 'recoil';
 import themeConfig from './theme';
 
 import CharacterSheet from './containers/CharacterSheet';
+import Header from './containers/Header';
 
 import StateInitializer from './state/StateInitializer';
 
-const THEME_OPTIONS = {
-  LIGHT: 'light',
-  DARK: 'dark',
-}
+import { THEME_OPTIONS } from './constants/themeOptions';
 
 const Page = styled.div `
   display: flex;
@@ -26,19 +24,6 @@ const Page = styled.div `
   font-family: ${props => props.theme.global.fontFamily};
   font-size: ${props => props.theme.global.fontSize};
   color: ${props => props.theme.global.color};
-`
-
-const Header = styled.header`
-  text-align: center;
-  
-  font-size: ${props => props.theme.header.fontSize};
-`
-
-const ToggleThemeButton = styled.button `
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  border-radius: 5px;
 `
 
 function App() {
@@ -57,15 +42,10 @@ function App() {
       <ThemeProvider theme={themeConfig[currentTheme]} >
         <StateInitializer characterId={1} >
         <Page className="App">
-              <Header>
-                Storyweaver Sheets
-                
-                <ToggleThemeButton 
-                  onClick={toggleTheme}
-                >
-                  {currentTheme === THEME_OPTIONS.DARK ? `Use Light Mode` : `Use Dark Mode`} 
-                </ToggleThemeButton>
-              </Header>
+              <Header 
+                currentTheme={currentTheme}
+                toggleTheme={toggleTheme}
+              />
 
               <CharacterSheet />
             </Page>
