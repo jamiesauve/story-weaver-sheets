@@ -6,6 +6,8 @@ const This = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  max-height: 600px;
 `
 
 const Body = styled.div`

@@ -4,18 +4,25 @@ const This = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
 
-  overflow: scroll;
+  ${props => props.fillContainerProportionately
+    ? `
+      height: 100%;
+    `
+    : ``
+  }
 `
 
 const ListItem = styled.div`
   margin: .3rem 0;
 `
 
-const ScrollableList = (props) => {
+const List = (props) => {
   return (
     <This 
-      className="ScrollableList"
+      className="List"
+      fillContainerProportionately={props.fillContainerProportionately}
     >
       {props.children.map((item, index) => (
         <ListItem
@@ -28,4 +35,4 @@ const ScrollableList = (props) => {
   )
 }
 
-export default ScrollableList;
+export default List;

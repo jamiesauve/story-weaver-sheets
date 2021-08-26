@@ -19,9 +19,9 @@ export const characterSavingThrowModifiersAsArraySelector = selector({
     const proficiencyBonus = get(characterProficiencyBonusAtom);
 
     return Object.entries(abilityScoreModifiersAsObject).map((abilityScorePair) => {
-      const [abilityScoreAbbr, abilityScoreModifier] = abilityScorePair;
+      const [abilityScoreName, abilityScoreModifier] = abilityScorePair;
 
-      if (proficientSavingThrows.includes(abilityScoreAbbr)) {
+      if (proficientSavingThrows.includes(abilityScoreName)) {
         return abilityScoreModifier + proficiencyBonus;
       } else {
         return abilityScoreModifier;

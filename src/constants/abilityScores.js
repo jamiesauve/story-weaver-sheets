@@ -32,3 +32,17 @@ export const abilityScores = [
 ];
 
 export const abilityScoresAsLabels = abilityScores.map((abilityScore) => abilityScore.label);
+
+export const abilityScoresAsObject = abilityScores.reduce((aggr, abilityScore) => {
+  return {
+    ...aggr,
+    [abilityScore.name]: abilityScore,
+  }
+}, {})
+
+export const abilityScoreConstants = abilityScores.reduce((aggr, abilityScore) => {
+  return {
+    ...aggr,
+    [abilityScore.name]: abilityScore.name,
+  }
+}, {})

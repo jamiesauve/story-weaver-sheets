@@ -6,12 +6,12 @@ import {
 export const characterAbilityScoresAtom = atom({
   key: 'characterAbilityScoresAtom',
   default: {
-    str: 10,
-    dex: 10,
-    con: 10,
-    int: 10,
-    wis: 10,
-    cha: 10,
+    strength: 10,
+    dexterity: 10,
+    constitution: 10,
+    intelligence: 10,
+    wisdom: 10,
+    charisma: 10,
   },
 });
 
@@ -35,10 +35,10 @@ export const characterAbilityScoreModifiersAsObjectSelector = selector({
   get: ({get}) => {
     const characterAbilityScoreModifiersAsArray = get(characterAbilityScoreModifiersAsArraySelector);
     const characterAbilityScores = get(characterAbilityScoresAtom);
-    const characterAbilityScoreModifiersAsObject =  Object.keys(characterAbilityScores).reduce((aggr, abilityScoreAbbr, index) => {
+    const characterAbilityScoreModifiersAsObject =  Object.keys(characterAbilityScores).reduce((aggr, abilityScoreName, index) => {
       return {
         ...aggr,
-        [abilityScoreAbbr]: characterAbilityScoreModifiersAsArray[index],
+        [abilityScoreName]: characterAbilityScoreModifiersAsArray[index],
       }
     }, {})
 

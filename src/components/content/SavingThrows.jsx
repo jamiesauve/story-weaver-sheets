@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { useRecoilValue } from 'recoil'
 
-import ScrollableList from '../ui/ScrollableList';
+import List from '../ui/List';
 import ProficiencySymbol from '../ui/ProficiencySymbol';
 
 import { abilityScores } from '../../constants/abilityScores';
@@ -36,22 +36,22 @@ const SavingThrows = () => {
   const characterSavingThrowProficiencies = useRecoilValue(characterSavingThrowsAtom);
 
   const listItems = abilityScores.map((abilityScore, index) => {
-    const bonus = characterSavingThrowModifiers[index];
+  const bonus = characterSavingThrowModifiers[index];
 
-    return (
-      <Row
-        key={abilityScore.label}
-      >
-        <ProficiencySymbol
-          hasProficiency={characterSavingThrowProficiencies.includes(abilityScore.abbr)}
+  return (
+    <Row
+      key={abilityScore.label}
+    >
+      <ProficiencySymbol
+        hasProficiency={characterSavingThrowProficiencies.includes(abilityScore.name)}
+      />
+
+      <RollableListItem 
+        bonus={bonus}
+        command={`d20${bonus < 0 ? bonus : `+${bonus}`}`}
+        label={abilityScore.label}
         />
-
-        <RollableListItem 
-          bonus={bonus}
-          command={`d20${bonus < 0 ? bonus : `+${bonus}`}`}
-          label={abilityScore.label}
-          />
-        </Row>
+      </Row>
     )
   })
 
@@ -61,11 +61,11 @@ const SavingThrows = () => {
         PROFICIENT
       </ProficientHeading>
 
-      <ScrollableList
+      <List
         fillContainerProportionately
       >
         {listItems}
-      </ScrollableList>
+      </List>
     </This>
   )
 }

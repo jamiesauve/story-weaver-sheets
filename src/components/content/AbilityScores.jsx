@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { useRecoilValue } from 'recoil'
 
-import ScrollableList from '../ui/ScrollableList'
+import List from '../ui/List'
 
 import { abilityScores } from '../../constants/abilityScores';
 import RollableListItem from '../ui/RollableListItem';
@@ -73,9 +73,9 @@ const AbilityScores = () => {
 
   return (
     <This>
-      <ScrollableList>
+      <List>
         {listItems}
-      </ScrollableList>
+      </List>
     </This>
   )
 }
