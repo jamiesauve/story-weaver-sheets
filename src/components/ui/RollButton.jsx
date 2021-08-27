@@ -1,6 +1,8 @@
 import styled from "styled-components"
 
 const This = styled.div`
+  position: relative;
+  
   height: 2rem;
   width: 2rem;
 `
