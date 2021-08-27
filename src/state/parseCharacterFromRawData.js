@@ -7,22 +7,50 @@ const parseCharacterFromRawData = ({ rawCharacterData }) => {
 
     return value.split(", ");
   })
+
+  const classesWithLevels = data[3].map((classString) => {
+    const args = classString.split(" ");
+
+    const classData = {};
+    classData.class = args[0];
+
+    if (isNaN(parseInt(args[1]))) {
+      classData.subclass = args[1];
+      classData.level = parseInt(args[2])
+    } else {
+      classData.level = parseInt(args[1])
+    }
+
+    return classData;
+  })
+
+  const totalLevel = classesWithLevels.reduce((aggr, classData) => {
+    return aggr + classData.level ?? 0
+  }, 0)
   
   const character = {
     commandName: data[0][0],
     name: data[1].join(" "),
+    race: data[2][0],
+    classesWithLevels,
+    totalLevel,
+    background: data[4][0],
+    alignment: data[5][0],
+    experiencePoints: parseInt(data[6][0]),
     abilityScores: {
-      strength: parseInt(data[2][0]),
-      dexterity: parseInt(data[2][1]),
-      constitution: parseInt(data[2][2]),
-      intelligence: parseInt(data[2][3]),
-      wisdom: parseInt(data[2][4]),
-      charisma: parseInt(data[2][5]),
+      strength: parseInt(data[7][0]),
+      dexterity: parseInt(data[7][1]),
+      constitution: parseInt(data[7][2]),
+      intelligence: parseInt(data[7][3]),
+      wisdom: parseInt(data[7][4]),
+      charisma: parseInt(data[7][5]),
     },
-    savingThrows: data[3],
-    skills: data[4],
-    proficiencyBonus: parseInt(data[5]),
+    savingThrows: data[8],
+    skills: data[9],
+    proficiencyBonus: parseInt(data[10]),
   }
+
+  console.log({ character })
 
   return character
 }
