@@ -7,6 +7,8 @@ import styled from "styled-components"
 
 import Symbol from './Symbol'
 
+import shade from "../../utils/colorUtils";
+
 const This = styled.section`
   display: flex;
   flex-direction: column;
@@ -18,7 +20,7 @@ const Header = styled.div`
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
-  color: ${props => props.headerColor}; // later, can add shade() to adjust these and maybe add a background filter
+  color: ${props => props.headerColor};
 
   & > span {
     margin-left: .6rem;
@@ -32,7 +34,8 @@ height: ${props => props.remainingHeight}px;
 width: 100%;
 padding: 10px;
 
-border: 1px solid ${props => props.theme.global.borderColor};
+border: 1px solid ${props => props.theme.global.color};
+border-top: 1px solid ${props => shade(props.headerColor, 60)};
 border-radius: 5px;
 `
 
@@ -80,6 +83,7 @@ const Box = (props) => {
 
       <Body 
         className="BoxBody"
+        headerColor={headerColor}
         remainingHeight={remainingHeight}
       >
         <Component />
