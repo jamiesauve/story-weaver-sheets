@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { useRecoilValue } from "recoil";
 
-import { characterNameAtom } from '../state/atoms/characterNameAtom';
+import { characterNameAtom } from '../state/atoms/generalCharacterDataAtom';
 
 import { THEME_OPTIONS } from "../constants/themeOptions";
 
