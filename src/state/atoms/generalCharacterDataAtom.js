@@ -23,6 +23,11 @@ export const characterExperiencePointsAtom = atom({
   default: -1,
 });
 
+export const characterHeightAtom = atom({
+  key: `characterHeightAtom`,
+  default: ``,
+});
+
 export const characterNameAtom = atom({
   key: `characterNameAtom`,
   default: ``,
@@ -31,6 +36,16 @@ export const characterNameAtom = atom({
 export const characterRaceAtom = atom({
   key: `characterRaceAtom`,
   default: ``,
+});
+
+export const characterSizeAtom = atom({
+  key: `characterSizeAtom`,
+  default: ``,
+});
+
+export const characterWeightAtom = atom({
+  key: `characterWeightAtom`,
+  default: 0,
 });
 
 export const characterTotalLevelSelector = selector({

@@ -27,24 +27,27 @@ const parseCharacterFromRawData = ({ rawCharacterData }) => {
   })
   
   const character = {
-    abilityScores: {
-      strength: parseInt(data[7][0]),
-      dexterity: parseInt(data[7][1]),
-      constitution: parseInt(data[7][2]),
-      intelligence: parseInt(data[7][3]),
-      wisdom: parseInt(data[7][4]),
-      charisma: parseInt(data[7][5]),
-    },
-    alignment: parseSnakeCaseToUpperCaseLabel(data[5][0]),
-    background: parseSnakeCaseToUpperCaseLabel(data[4][0]),
-    classes,
     commandName: data[0][0],
-    experiencePoints: parseInt(data[6][0]),
     name: data[1].join(" "),
-    proficiencyBonus: parseInt(data[10]),
     race: parseSnakeCaseToUpperCaseLabel(data[2][0]),
-    savingThrows: data[8],
-    skills: data[9],
+    classes,
+    background: parseSnakeCaseToUpperCaseLabel(data[4][0]),
+    alignment: parseSnakeCaseToUpperCaseLabel(data[5][0]),
+    experiencePoints: parseInt(data[6][0]),
+    height: data[7][0],
+    weight: parseInt(data[8][0]),
+    size: parseSnakeCaseToUpperCaseLabel(data[9][0]),
+    abilityScores: {
+      strength: parseInt(data[10][0]),
+      dexterity: parseInt(data[10][1]),
+      constitution: parseInt(data[10][2]),
+      intelligence: parseInt(data[10][3]),
+      wisdom: parseInt(data[10][4]),
+      charisma: parseInt(data[10][5]),
+    },
+    proficiencyBonus: parseInt(data[13]),
+    savingThrows: data[11],
+    skills: data[12],
   }
 
   return character

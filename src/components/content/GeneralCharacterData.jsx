@@ -8,9 +8,12 @@ import {
   characterBackgroundAtom,
   characterClassesAtom,
   characterExperiencePointsAtom,
+  characterHeightAtom,
   characterNameAtom,
   characterRaceAtom,
+  characterSizeAtom,
   characterTotalLevelSelector,
+  characterWeightAtom,
 } from '../../state/atoms/generalCharacterDataAtom'
 
 const This = styled.div`
@@ -23,6 +26,16 @@ const This = styled.div`
 
 const Row = styled.div`
   display: flex;
+  text-align: center;
+`
+
+const ItemLabel = styled.span`
+  margin-right: 0.6rem;
+  font-style: italic;
+`
+
+const ItemValue = styled.span`
+  font-weight: bold;
 `
 
 const GeneralCharacterData = () => {    
@@ -30,21 +43,54 @@ const GeneralCharacterData = () => {
   const characterBackground = useRecoilValue(characterBackgroundAtom)
   const characterClasses = useRecoilValue(characterClassesAtom)
   const characterExperiencePoints = useRecoilValue(characterExperiencePointsAtom)
+  const characterHeight = useRecoilValue(characterHeightAtom)
   const characterName = useRecoilValue(characterNameAtom)
   const characterRace = useRecoilValue(characterRaceAtom)
+  const characterSize = useRecoilValue(characterSizeAtom)
   const characterTotalLevel = useRecoilValue(characterTotalLevelSelector)
+  const characterWeight = useRecoilValue(characterWeightAtom)
 
-  const characterClassesList = characterClasses.map((classObject) => {
-    if (classObject.subclass) {
-      return (
-        `${classObject.class} (${classObject.subclass}): Level ${classObject.level}`
-      )
-    } else {
-      return (
-        `${classObject.class}: ${classObject.level}`
-      )
-    }
-  })
+  const characterClassString = (characterClasses.length === 1)
+    ? <Row>
+      <ItemLabel>
+        Class:
+      </ItemLabel>
+      
+      <ItemValue>
+        {`${characterClasses[0].class}${characterClasses[0].subclass ? ` (${characterClasses[0].subclass})`: ``}`}
+      </ItemValue>
+    </Row>
+    : <>
+      <ItemLabel>
+        Classes:
+      </ItemLabel>
+
+      <Row>
+        <List>
+          {
+            characterClasses.map((classObject) => {
+              if (classObject.subclass) {
+                return (
+                  <ItemValue
+                    key={classObject.class}
+                  >
+                    {`${classObject.class} (${classObject.subclass}): Level ${classObject.level}`}
+                  </ItemValue>
+                )
+              } else {
+                return (
+                  <ItemValue
+                    key={classObject.class}
+                  >
+                    {`${classObject.class}: ${classObject.level}`}
+                  </ItemValue>
+                )
+              }
+            })
+          }
+        </List>
+      </Row>
+    </>
 
   const isAlignmentUsed = characterAlignment !== "none"
   const areExperiencePointsUsed = characterExperiencePoints !== -1
@@ -52,42 +98,108 @@ const GeneralCharacterData = () => {
   return (
     <This>
       <Row>
-        Name: {characterName}
+        <ItemLabel>
+          Name:
+        </ItemLabel>
+
+        <ItemValue>
+          {characterName}
+        </ItemValue>
       </Row>
       
       <Row>
-        Race: {characterRace}
+      <ItemLabel>
+          Race:
+        </ItemLabel>
+
+        <ItemValue>
+          {characterRace}
+        </ItemValue>
       </Row>
 
-      <Row>
-        Character Level: {characterTotalLevel}
+      <Row>   
+        <ItemLabel>
+          Character Level:
+        </ItemLabel>
+
+        <ItemValue>
+          {characterTotalLevel}
+        </ItemValue>
       </Row>
 
-      Classes:
+      <br />
+
+      {characterClassString}
+
+      <br />
 
       <Row>
-        <List>
-          {characterClassesList}
-        </List>
-      </Row>
+        <ItemLabel>
+          Background:
+        </ItemLabel>
 
-      <Row>
-        Background: {characterBackground}
+        <ItemValue>
+          {characterBackground}
+        </ItemValue>
       </Row>
 
       {areExperiencePointsUsed
         ? <Row>
-          Experience Points: {characterExperiencePoints}
+          <ItemLabel>
+            Experience Points:
+          </ItemLabel>
+
+          <ItemValue>
+            {characterExperiencePoints}
+          </ItemValue>
         </Row>
         : null
       }
 
       {isAlignmentUsed
         ? <Row>
-          Alignment: {characterAlignment}
+          <ItemLabel>
+            Alignment:
+          </ItemLabel>
+
+          <ItemValue>
+            {characterAlignment}
+          </ItemValue>
         </Row>
         : null
       }
+
+      <br />
+
+      <Row>
+        <ItemLabel>
+          Size:
+        </ItemLabel>
+
+        <ItemValue>
+          {characterSize}
+        </ItemValue>
+      </Row>
+
+      <Row>
+        <ItemLabel>
+          Height:
+        </ItemLabel>
+
+        <ItemValue>
+          {characterHeight}
+        </ItemValue>
+      </Row>
+
+      <Row>
+      <ItemLabel>
+          Weight:
+        </ItemLabel>
+
+        <ItemValue>
+          {characterWeight} lbs
+        </ItemValue>
+      </Row>
 
     </This>
   )
