@@ -14,7 +14,7 @@ export const characterSkillsAtom = atom({
 });
 
 export const characterSkillModifiersAsArraySelector = selector({
-  key: `characterSavingThrowModifiersSelector`,
+  key: `characterSkillModifiersAsArraySelector`,
   get: ({get}) => {
     const abilityScoreModifiersAsObject = get(characterAbilityScoreModifiersAsObjectSelector);
     const proficientSkills = get(characterSkillsAtom);

@@ -11,6 +11,7 @@ const Layout = styled.div `
 
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: minmax(auto, 600px);
   grid-gap: 40px;
 
   margin: 40px;

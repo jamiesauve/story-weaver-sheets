@@ -1,3 +1,8 @@
+import { 
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import styled from "styled-components"
 
 import Symbol from './Symbol'
@@ -6,17 +11,6 @@ const This = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  max-height: 600px;
-`
-
-const Body = styled.div`
-height: 100%;
-width: 100%;
-padding: 10px;
-
-border: 1px solid ${props => props.theme.global.borderColor};
-border-radius: 5px;
 `
 
 const Header = styled.div`
@@ -31,7 +25,34 @@ const Header = styled.div`
   }
 `
 
+const Body = styled.div`
+flex-grow: 1;
+height: ${props => props.remainingHeight}px;
+
+width: 100%;
+padding: 10px;
+
+border: 1px solid ${props => props.theme.global.borderColor};
+border-radius: 5px;
+`
+
 const Box = (props) => {
+  const [remainingHeight, setRemainingHeight] = useState(0)
+  const boxRef = useRef(null)
+  const headerRef = useRef(null)
+
+  useEffect(() => {
+    if (boxRef.current !== null && headerRef.current !== null) {
+      const boxHeight = boxRef.current.clientHeight
+      const headerHeight = headerRef.current.clientHeight
+
+      setRemainingHeight(boxHeight - headerHeight - 20) // padding in Body
+    }
+  }, [
+    boxRef,
+    headerRef,
+  ])
+
   const {
     Component,
     headerColor,
@@ -40,9 +61,13 @@ const Box = (props) => {
   } = props;
 
   return (
-    <This className="Box">
+    <This 
+      className="Box"
+      ref={boxRef}
+    >
       <Header
         headerColor={headerColor}
+        ref={headerRef}
       >
         <Symbol
           value={symbolValue}
@@ -53,7 +78,10 @@ const Box = (props) => {
         </span>
       </Header>
 
-      <Body>
+      <Body 
+        className="BoxBody"
+        remainingHeight={remainingHeight}
+      >
         <Component />
       </Body>
     </This>

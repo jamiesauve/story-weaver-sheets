@@ -30,6 +30,8 @@ const ScrollBackArrow = styled.div`
   width: 0;
   height: 0;
 
+  margin-bottom: 10px;
+
   align-self: center;
 
   border-top: 10px solid transparent;
@@ -44,6 +46,8 @@ const ScrollBackArrow = styled.div`
 const ScrollFurtherArrow = styled.div`
   width: 0;
   height: 0;
+
+  margin-top: 10px;
 
   align-self: center;
 
