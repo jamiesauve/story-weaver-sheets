@@ -8,7 +8,7 @@ const config = [
     id: 0,
     Component: GeneralCharacterData,
     defaultHeaderColor: `#950`,
-    label: "General Character Data",
+    label: "General",
     symbolValue: "a", // strawberry
   },
   {

@@ -52,7 +52,8 @@ const StateInitializer = (props) => {
         url: `${API_URL}/character/${characterId}`,
         headers: {
           'Content-Type': 'application/json',
-        }
+          'x-client-app': `storyweaver-sheets`,
+        },
       })
     
       const character = parseCharacterFromRawData({ rawCharacterData });

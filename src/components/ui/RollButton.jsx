@@ -1,4 +1,7 @@
+import axios from 'axios';
 import styled from "styled-components"
+
+import { API_URL } from '../../env';
 
 const This = styled.div`
   position: relative;
@@ -26,12 +29,23 @@ const D10Image = styled.div`
 `
 
 const RollButton = (props) => {
+  const makeRollApiCall = async (command) => {
+    const result = await axios({
+      headers: {
+        'Content-Type': `application/json`,
+        'x-client-app': `storyweaver-sheets`,
+      },
+      method: `GET`,
+      url: `${API_URL}/roll/${command}`,
+    })
+  }
+
   return (
     <This>
       <D10Background />
 
       <D10Image
-        onClick={() => console.log(props.command)}
+        onClick={() => makeRollApiCall(props.command)}
       />
     </This>
   )
