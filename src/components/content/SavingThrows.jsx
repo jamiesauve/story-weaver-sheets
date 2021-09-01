@@ -49,6 +49,10 @@ const SavingThrows = () => {
       <RollableListItem 
         bonus={bonus}
         command={`d20${bonus < 0 ? bonus : `+${bonus}`}`}
+        displayLabels={{
+          top: abilityScore.label,
+          bottom: `Saving Throw`,
+        }}
         label={abilityScore.label}
         />
       </Row>

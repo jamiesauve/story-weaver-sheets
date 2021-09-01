@@ -1,5 +1,8 @@
 import axios from 'axios';
 import styled from "styled-components"
+import { useRecoilState } from 'recoil'
+
+import { currentRollAtom } from '../../state/atoms/currentRollAtom';
 
 import { API_URL } from '../../env';
 
@@ -29,14 +32,26 @@ const D10Image = styled.div`
 `
 
 const RollButton = (props) => {
+  const [, setCurrentRoll] = useRecoilState(currentRollAtom)
+
   const makeRollApiCall = async (command) => {
-    const result = await axios({
+    const { data } = await axios({
       headers: {
         'Content-Type': `application/json`,
         'x-client-app': `storyweaver-sheets`,
       },
       method: `GET`,
       url: `${API_URL}/roll/${command}`,
+    })
+
+    const isNat1 = Boolean(data.total - data.bonus === 1)
+    const isNat20 = Boolean(data.total - data.bonus === 20)
+
+    setCurrentRoll({
+      displayLabels: props.displayLabels, 
+      isNat1,
+      isNat20,
+      value: data.total,
     })
   }
 

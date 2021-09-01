@@ -49,6 +49,10 @@ const Skills = () => {
         <RollableListItem 
           bonus={bonus}
           command={`d20${bonus < 0 ? bonus : `+${bonus}`}`}
+          displayLabels={{
+            top: skill.label,
+            bottom: `Check`,
+          }}
           label={skill.label}
           />
         </Row>

@@ -38,6 +38,7 @@ const RollableListItem = (props) => {
   const {
     bonus,
     command,
+    displayLabels,
     label,
   } = props;
 
@@ -52,6 +53,7 @@ const RollableListItem = (props) => {
       </ItemLabel> 
       <RollButton
         command={command}
+        displayLabels={displayLabels}
       />
     </This>
   )

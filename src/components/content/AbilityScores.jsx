@@ -66,6 +66,10 @@ const AbilityScores = () => {
         <RollableListItem 
           bonus={bonus}
           command={`d20${bonus < 0 ? bonus : `+${bonus}`}`}
+          displayLabels={{
+            top: abilityScore.label,
+            bottom: `Check`,
+          }}
           label={abilityScore.label}
           />
         </Row>

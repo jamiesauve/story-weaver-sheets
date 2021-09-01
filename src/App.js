@@ -7,6 +7,7 @@ import themeConfig from './theme';
 
 import CharacterSheet from './containers/CharacterSheet';
 import Header from './containers/Header';
+import RollDisplay from './containers/RollDisplay';
 
 import StateInitializer from './state/StateInitializer';
 
@@ -41,14 +42,16 @@ function App() {
     <RecoilRoot>
       <ThemeProvider theme={themeConfig[currentTheme]} >
         <StateInitializer characterId={1} >
-        <Page className="App">
-              <Header 
-                currentTheme={currentTheme}
-                toggleTheme={toggleTheme}
-              />
+          <Page className="App">
+            <Header 
+              currentTheme={currentTheme}
+              toggleTheme={toggleTheme}
+            />
 
-              <CharacterSheet />
-            </Page>
+            <CharacterSheet />
+          </Page>
+
+          <RollDisplay />
         </StateInitializer>
       </ThemeProvider>
     </RecoilRoot>
