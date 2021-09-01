@@ -1,5 +1,6 @@
 import { 
   useEffect, 
+  useRef,
   useState,
 } from 'react'
 import { useRecoilValue } from 'recoil'
@@ -65,20 +66,38 @@ const RollDisplay = () => {
   const [isDisplayVisible, setIsDisplayVisible] = useState(false);
   const [isCurrentlyRendered, setIsCurrentlyRendered] = useState(false);
 
+  const isVisibleTimeout = useRef(null);
+  const isRenderedTimeout = useRef(null);
+
   useEffect(() => {
     if (
       currentRoll !== null 
-      && isCurrentlyRendered === false
       && isDisplayVisible === false
-    ) {
+      && isCurrentlyRendered === false
+      ) {
       setIsDisplayVisible(true)
       setIsCurrentlyRendered(true)
 
-      setTimeout(() => {
+      isVisibleTimeout.current = setTimeout(() => {
         setIsDisplayVisible(false)
       }, 600)
 
-      setTimeout(() => {
+      isRenderedTimeout.current = setTimeout(() => {
+        setIsCurrentlyRendered(false)
+      }, 900)
+    }
+    else if (currentRoll !== null) {
+      clearTimeout(isVisibleTimeout.current);
+      clearTimeout(isRenderedTimeout.current);
+
+      setIsDisplayVisible(true)
+      setIsCurrentlyRendered(true)
+
+      isVisibleTimeout.current = setTimeout(() => {
+        setIsDisplayVisible(false)
+      }, 600)
+
+      isRenderedTimeout.current = setTimeout(() => {
         setIsCurrentlyRendered(false)
       }, 900)
     }
