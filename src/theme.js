@@ -18,6 +18,10 @@ const theme = {
     header: {
       fontSize: `3rem`,
     },
+    richTextEditor: {
+      buttonBackgroundColor: `#777`,
+      buttonTextColor: `#222`, 
+    },
     rollButton: {
       imageUrl: `url("./assets/d10-dark-mode.svg")`,
       imageUrlOnHover: `url("./assets/d10-on-hover.svg")`,
@@ -36,6 +40,10 @@ const theme = {
     },
     header: {
       fontSize: `3rem`,
+    },
+    richTextEditor: {
+      buttonBackgroundColor: `#ddd`,
+      buttonTextColor: `#222`, 
     },
     rollButton: {
       imageUrl: `url("./assets/d10-light-mode.svg")`,

@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 import { characterNameAtom } from '../state/atoms/generalCharacterDataAtom';
 
 import { THEME_OPTIONS } from "../constants/themeOptions";
+import { isInEditingModeAtom } from "../state/atoms/isInEditingModeAtom";
 
 const This = styled.div`
   width: 100%;
@@ -50,15 +51,24 @@ const LogoIcon = styled.img`
 `
 
 const LogoLabel = styled.div`
-font-size: 1.5rem;
-line-height: 1.5rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
 
-@media screen and (min-width: 600px) {
-  font-size: 2rem;
-}
+  @media screen and (min-width: 600px) {
+    font-size: 2rem;
+  }
 `
 
-const ToggleThemeButton = styled.button `
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+
+  @media screen and (min-width: 600px) {
+    flex-direction: row;
+  }
+`
+
+const ToggleButton = styled.button `
   border-radius: 5px;
 
   font-size: 0.7rem;
@@ -71,6 +81,7 @@ const ToggleThemeButton = styled.button `
 
 const Header = (props) => {
   const characterName = useRecoilValue(characterNameAtom)
+  const [isInEditingMode, setIsInEditingMode] = useRecoilState(isInEditingModeAtom);
 
   const {
     toggleTheme,
@@ -88,11 +99,19 @@ const Header = (props) => {
           </LogoLabel>
         </Logo>
         
-        <ToggleThemeButton 
-          onClick={toggleTheme}
-        >
-          {currentTheme === THEME_OPTIONS.DARK ? `Use Light Mode` : `Use Dark Mode`} 
-        </ToggleThemeButton>
+        <ButtonContainer>
+        <ToggleButton 
+            onClick={toggleTheme}
+          >
+            {currentTheme === THEME_OPTIONS.DARK ? `Use Light Mode` : `Use Dark Mode`} 
+          </ToggleButton>
+
+          <ToggleButton 
+            onClick={() => setIsInEditingMode(isInEditingMode => !isInEditingMode)}
+          >
+            {isInEditingMode === true ? `stop editing` : `start editing`} 
+          </ToggleButton>
+        </ButtonContainer>
       </TopRow>
 
       <BottomRow>
