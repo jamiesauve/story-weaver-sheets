@@ -15,7 +15,7 @@ export const characterBackgroundAtom = atom({
 
 export const characterClassesAtom = atom({
   key: `characterClassesAtom`,
-  default: {},
+  default: [],
 });
 
 export const characterExperiencePointsAtom = atom({

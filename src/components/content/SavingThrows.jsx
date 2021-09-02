@@ -43,7 +43,7 @@ const SavingThrows = () => {
       key={abilityScore.label}
     >
       <ProficiencySymbol
-        hasProficiency={characterSavingThrowProficiencies.includes(abilityScore.name)}
+        hasProficiency={(characterSavingThrowProficiencies?.[abilityScore.name] ?? false) === true}
       />
 
       <RollableListItem 

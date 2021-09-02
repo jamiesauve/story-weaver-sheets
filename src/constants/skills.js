@@ -72,6 +72,11 @@ export const skills = [
     name: 'persuasion',
   },
   {
+    associatedAbilityScore: abilityScoresAsObject.intelligence.name,
+    label: `Religion`,
+    name: 'religion',
+  },
+  {
     associatedAbilityScore: abilityScoresAsObject.dexterity.name,
     label: `Sleight of Hand`,
     name: 'sleightOfHand',
@@ -85,11 +90,6 @@ export const skills = [
     associatedAbilityScore: abilityScoresAsObject.wisdom.name,
     label: `Survival`,
     name: 'survival',
-  },
-  {
-    associatedAbilityScore: abilityScoresAsObject.intelligence.name,
-    label: `Religion`,
-    name: 'religion',
   },
 ];
 

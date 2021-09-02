@@ -43,7 +43,7 @@ const Skills = () => {
         key={skill.label}
       >
         <ProficiencySymbol
-          hasProficiency={characterSkillProficiencies.includes(skill.name)}
+          hasProficiency={(characterSkillProficiencies?.[skill.name] ?? false) === true}
         />
 
         <RollableListItem 

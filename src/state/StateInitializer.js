@@ -20,7 +20,6 @@ import { characterSkillsAtom } from './atoms/characterSkillsAtom'
 import { characterProficiencyBonusAtom } from './atoms/characterProficiencyBonusAtom'
 
 import { API_URL } from "../env";
-import parseCharacterFromRawData from './parseCharacterFromRawData'
 
 
 const StateInitializer = (props) => {
@@ -47,7 +46,7 @@ const StateInitializer = (props) => {
 
   useEffect(() => {
     const initializeState = async () => {
-      const { data: rawCharacterData } = await axios({
+      const { data: character } = await axios({
         method: `GET`,
         url: `${API_URL}/character/${characterId}`,
         headers: {
@@ -55,9 +54,7 @@ const StateInitializer = (props) => {
           'x-client-app': `storyweaver-sheets`,
         },
       })
-    
-      const character = parseCharacterFromRawData({ rawCharacterData });
-    
+
       setCharacterAbilityScores(character.abilityScores);
       setCharacterAlignment(character.alignment);
       setCharacterBackground(character.background);
