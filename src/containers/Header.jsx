@@ -59,13 +59,13 @@ const LogoLabel = styled.div`
   }
 `
 
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column-reverse;
+const ButtonContainer = styled.div` // TODO: put me in a menu on mobile
+  position: fixed;
+  top: 5px;
+  right: 5px;
 
-  @media screen and (min-width: 600px) {
-    flex-direction: row;
-  }
+  display: flex;
+  flex-direction: column;
 `
 
 const ToggleButton = styled.button `
@@ -100,7 +100,7 @@ const Header = (props) => {
         </Logo>
         
         <ButtonContainer>
-        <ToggleButton 
+          <ToggleButton 
             onClick={toggleTheme}
           >
             {currentTheme === THEME_OPTIONS.DARK ? `Use Light Mode` : `Use Dark Mode`} 
@@ -109,7 +109,7 @@ const Header = (props) => {
           <ToggleButton 
             onClick={() => setIsInEditingMode(isInEditingMode => !isInEditingMode)}
           >
-            {isInEditingMode === true ? `stop editing` : `start editing`} 
+            {isInEditingMode === true ? `Save Sheet` : `Edit Sheet`} 
           </ToggleButton>
         </ButtonContainer>
       </TopRow>
