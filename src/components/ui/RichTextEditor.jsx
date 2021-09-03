@@ -16,19 +16,27 @@ import { isInEditingModeAtom } from '../../state/atoms/isInEditingModeAtom';
 // need to get the styled-components theme in here. I wish I could do this properly :/
 const This = styled.div`
   flex-grow: 1;
+  max-height: 100%;
 
   display: flex;
   flex-direction: column;
 
   & .wrapper-class {
     flex-grow: 1;
+    max-height: 100%;
 
     display: flex;
     flex-direction: column;
   }
 
   & .editor-class {
-    ${props => props.isInEditingMode ? `border: 1px solid ${props.theme.global.highlight};` : ``}
+    ${props => props.isInEditingMode 
+      ? `
+        border: 1px solid ${props.theme.global.highlight};
+        padding: 0 0.5rem;
+        margin-top: -1rem;
+      ` 
+      : ``}
   }
 
   & .toolbar-class {
