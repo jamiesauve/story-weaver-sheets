@@ -15,9 +15,10 @@ import {
   characterWeightAtom,
   
 } from './atoms/generalCharacterDataAtom'
+import { characterAppearanceAtom } from './atoms/characterAppearanceAtom'
+import { characterProficiencyBonusAtom } from './atoms/characterProficiencyBonusAtom'
 import { characterSavingThrowsAtom } from './atoms/characterSavingThrowsAtom'
 import { characterSkillsAtom } from './atoms/characterSkillsAtom'
-import { characterProficiencyBonusAtom } from './atoms/characterProficiencyBonusAtom'
 
 import { API_URL } from "../env";
 
@@ -32,6 +33,7 @@ const StateInitializer = (props) => {
 
   const [, setCharacterAbilityScores] = useRecoilState(characterAbilityScoresAtom)
   const [, setCharacterAlignment] = useRecoilState(characterAlignmentAtom)
+  const [, setCharacterAppearance] = useRecoilState(characterAppearanceAtom)
   const [, setCharacterBackground] = useRecoilState(characterBackgroundAtom)
   const [, setCharacterClasses] = useRecoilState(characterClassesAtom)
   const [, setCharacterExperiencePoints] = useRecoilState(characterExperiencePointsAtom)
@@ -57,6 +59,7 @@ const StateInitializer = (props) => {
 
       setCharacterAbilityScores(character.abilityScores);
       setCharacterAlignment(character.alignment);
+      setCharacterAppearance(character.appearance);
       setCharacterBackground(character.background);
       setCharacterClasses(character.classes);
       setCharacterExperiencePoints(character.experiencePoints);
