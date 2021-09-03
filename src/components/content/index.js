@@ -1,5 +1,6 @@
 import AbilityScores from './AbilityScores';
 import GeneralCharacterData from './GeneralCharacterData';
+import Appearance from './Appearance';
 import SavingThrows from './SavingThrows';
 import Skills from './Skills';
 
@@ -31,7 +32,14 @@ const config = [
     defaultHeaderColor: `#559`,
     label: "Skills",
     symbolValue: "u", // ship's wheel
-  }
+  },
+  {
+    id: 4,
+    Component: Appearance,
+    defaultHeaderColor: `#299`,
+    label: "Appearance",
+    symbolValue: "Z", // flower
+  },
 ]
 
 export default config;
