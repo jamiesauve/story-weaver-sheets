@@ -4,6 +4,10 @@ import {
 } from 'react';
 import styled from 'styled-components';
 import { Editor } from 'react-draft-wysiwyg';
+import {
+  ContentState,
+  EditorState,
+} from 'draft-js'
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useRecoilValue } from 'recoil';
 
@@ -41,13 +45,33 @@ const This = styled.div`
 `
 
 const RichTextEditor = (props) => {
+  const {
+    initialValue,
+  } = props
+
   const [isReadOnly, setIsReadOnly] = useState(true)
   const isInEditingMode = useRecoilValue(isInEditingModeAtom)
+  const [currentEditorState, setCurrentEditorState] = useState(EditorState.createEmpty())
 
   useEffect(() => {
     setIsReadOnly(!isInEditingMode)
   }, [
     isInEditingMode
+  ])
+
+  const parseTextToContentState = (text) => {
+    const initialContentState = ContentState.createFromText(text);
+    const initialEditorState = EditorState.createWithContent(initialContentState);
+    const initialEditorStateWithFocusAtEnd = EditorState.moveSelectionToEnd(initialEditorState);
+
+    return initialEditorStateWithFocusAtEnd;
+  }
+
+  useEffect(() => {
+    const initialEditorState = parseTextToContentState(initialValue);
+    setCurrentEditorState(initialEditorState)
+  }, [
+    initialValue
   ])
 
   return (
@@ -59,6 +83,9 @@ const RichTextEditor = (props) => {
         wrapperClassName="wrapper-class"
         editorClassName="editor-class"
         toolbarClassName="toolbar-class"
+
+        editorState={currentEditorState}
+        onEditorStateChange={setCurrentEditorState}
 
         readOnly={isReadOnly}
         toolbarHidden={isReadOnly}
