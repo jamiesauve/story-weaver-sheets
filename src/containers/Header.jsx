@@ -24,6 +24,12 @@ const TopRow = styled.header`
   padding: 0.5rem;
 
   box-sizing: border-box;
+
+  margin-top: 1rem;
+
+  @media screen and (min-width: 600px) {
+    margin-top: 0rem;
+  }
 `
 
 const BottomRow = styled.div`
@@ -59,13 +65,30 @@ const LogoLabel = styled.div`
   }
 `
 
-const ButtonContainer = styled.div` // TODO: put me in a menu on mobile
+const ButtonContainer = styled.div`
   position: fixed;
-  top: 5px;
-  right: 5px;
+  top: 0;
+  width: 100%;
+  
+  height: 1rem;
 
+  background: ${props => props.theme.global.background};
+  
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: flex-end;
+  
+  @media screen and (min-width: 600px) {
+    top: 5px;
+    right: 5px;
+
+    height: auto;
+    width: auto;
+    
+    flex-direction: column;
+    
+    background: transparent;
+  }
 `
 
 const ToggleButton = styled.button `
